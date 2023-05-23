@@ -1,0 +1,35 @@
+<div class="container">
+  <h2>Courses</h2>
+
+  <!-- Course Form -->
+  <form (ngSubmit)="saveCourse()" #courseForm="ngForm">
+    <mat-card class="form-card">
+      <mat-card-content>
+        <mat-form-field appearance="outline">
+          <mat-label>Title</mat-label>
+          <input matInput placeholder="Course Title" [(ngModel)]="selectedCourse.title" name="title" required>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="outline">
+          <mat-label>Description</mat-label>
+          <textarea matInput placeholder="Course Description" [(ngModel)]="selectedCourse.description" name="description" required></textarea>
+        </mat-form-field>
+
+        <div class="form-buttons">
+          <button mat-raised-button color="primary" type="submit" [disabled]="courseForm.invalid">Save</button>
+          <button mat-raised-button type="button" (click)="clearForm()">Clean</button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </form>
+
+  <!-- Course List -->
+  <div class="course-list">
+    <h3 class="mat-headline-3">Registered Courses</h3>
+    <ul>
+      <li *ngFor="let course of courses" (click)="loadCourse(course)">
+        <h4 class="mat-headline-4">Course: {{ course.title }} Description: {{ course.description }}</h4>  
+      </li>
+    </ul>
+  </div>
+</div>
